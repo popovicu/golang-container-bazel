@@ -1,5 +1,5 @@
-load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 
 pkg_tar(
     name = "server_layer",
@@ -9,8 +9,8 @@ pkg_tar(
 oci_image(
     name = "container_image",
     base = "@distroless_base",
-    tars = [":server_layer"],
     entrypoint = ["/server"],
+    tars = [":server_layer"],
 )
 
 oci_tarball(
